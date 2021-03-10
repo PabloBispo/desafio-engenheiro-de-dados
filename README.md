@@ -27,11 +27,11 @@ Script que busca o nome das cidades contidas no arquivo _ceps.csv_ por cep e sal
 As dependências devem ser instaladas preferencialmente em um ambiênte virtual.
 
 ```bash
-virtualenv --system-site-packages -p python3 ceps-venv3
+virtualenv --system-site-packages -p python3 ceps_venv3
 # or
-python3 -m ceps-venv3
+python3 -m venv ceps_venv3
 
-source ceps-venv3/bin/activate
+source ceps_venv3/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
