@@ -44,7 +44,7 @@ python3 main.py # Gera um um arquivo chamado "NomesCidades.csv"
                 # presentes na lista de CEPs.
 # or
 
-python3 run.py [-d] # Path para um CSV com Ceps de cidades .
+python3 main.py [-d] # Path para um CSV com Ceps de cidades .
                [-o] # Nome do CSV de output.
 ```
 

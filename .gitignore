@@ -112,6 +112,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+ceps_venv3/
 
 # Spyder project settings
 .spyderproject
