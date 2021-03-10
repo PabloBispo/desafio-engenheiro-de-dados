@@ -1,12 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from config import BASE_URL
+from config import (
+    BASE_URL_VIACEP,
+    BASE_URL_BRASIL_API
+    )
 from data.data import (
     BANCO_DE_CEPS
     )
 
 from enum import Enum
-from requests import get
+import requests
+
+requests.adapters.DEFAULT_RETRIES = 1
 
 
 class CepAPI:
@@ -23,15 +28,26 @@ class CepAPI:
         None.
 
         '''
-        url = BASE_URL.format(cep)        
-        response = get(url)
+        URL_VIACEP = BASE_URL_VIACEP.format(cep)     
+        URL_BRASIL_API = BASE_URL_BRASIL_API.format(cep)     
+        
+        try:
+            use_brasil_api = False
+            response = requests.get(BASE_URL_VIACEP, timeout = 2)
+            
+        except:
+            response = requests.get(URL_BRASIL_API)
+            use_brasil_api = True
         
         if response.status_code != 200:
             return None
         
         dados_cidade = response.json()  
-        localidade = dados_cidade.get("localidade")
-        
+
+        localidade = dados_cidade.get("localidade") if (
+            not use_brasil_api
+            ) else dados_cidade.get("city")
+        print(localidade)
         return localidade
         
     
@@ -84,7 +100,10 @@ def buscar_nome_cidade_por_cep(cep: int) -> str:
     localidade = CepLocal().buscar_cidade_por_cep(int(cep))
     
     if localidade is None:
-        localidade = CepAPI().buscar_cidade_por_cep(str(cep))
+        try:
+            localidade = CepAPI().buscar_cidade_por_cep(str(cep))
+        except:
+            localidade = ""
         if localidade:
             origem = Origem.API
         else:
