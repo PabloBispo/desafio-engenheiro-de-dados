@@ -50,6 +50,6 @@ python3 main.py [-d] # Path para um CSV com Ceps de cidades .
 
 ### Comentários
 
-Algumas classes não foram escritas da maneira mais otimizada possível, por exemplo, a intenção primária foi atender todos os requisitos do desafio técnico.
+Algumas classes e funções não foram escritas da maneira mais otimizada possível, a intenção primária foi atender todos os requisitos do desafio técnico.
 
 Me coloco à disposição para esclarecer qualquer ponto.
