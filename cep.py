@@ -47,7 +47,6 @@ class CepAPI:
         localidade = dados_cidade.get("localidade") if (
             not use_brasil_api
             ) else dados_cidade.get("city")
-        print(localidade)
         return localidade
         
     
@@ -111,7 +110,7 @@ def buscar_nome_cidade_por_cep(cep: int) -> str:
             origem = Origem.NOT_FOUND
     else:
         origem = Origem.LOCAL
-    
+    print(f'{cep} -> {localidade}')
     return {
         'cep': cep,
         'nome_cidade': localidade,
